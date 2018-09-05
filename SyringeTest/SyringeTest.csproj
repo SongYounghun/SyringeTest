@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE0A7A39-6D3F-4E95-B7D9-A72E1C7C35DF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SyringeTest</RootNamespace>
+    <AssemblyName>SyringeTest</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddSeqDelay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddSeqDelay.Designer.cs">
+      <DependentUpon>AddSeqDelay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddSequence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddSequence.Designer.cs">
+      <DependentUpon>AddSequence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddSeqIO.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddSeqIO.Designer.cs">
+      <DependentUpon>AddSeqIO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddSeqMotion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddSeqMotion.Designer.cs">
+      <DependentUpon>AddSeqMotion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\AjinMotion_IO\AXL\AXD.cs" />
+    <Compile Include="Common\AjinMotion_IO\AXL\AXDev.cs" />
+    <Compile Include="Common\AjinMotion_IO\AXL\AXHD.cs" />
+    <Compile Include="Common\AjinMotion_IO\AXL\AXHS.cs" />
+    <Compile Include="Common\AjinMotion_IO\AXL\AXL.cs" />
+    <Compile Include="Common\AjinMotion_IO\AXL\AXM.cs" />
+    <Compile Include="Common\CommonUtil.cs" />
+    <Compile Include="Common\DefPath.cs" />
+    <Compile Include="Common\IniFile.cs" />
+    <Compile Include="Common\LogFile.cs" />
+    <Compile Include="Common\ViewportlayoutSetting.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IO\DialogIO\IOControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IO\DialogIO\IOControl.Designer.cs">
+      <DependentUpon>IOControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IO\DialogIO\IONameSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IO\DialogIO\IONameSetting.Designer.cs">
+      <DependentUpon>IONameSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IO\DIOAjin.cs" />
+    <Compile Include="IO\DIOBase.cs" />
+    <Compile Include="IO\IDIO.cs" />
+    <Compile Include="Motion\AxisAjin.cs" />
+    <Compile Include="Motion\AxisBase.cs" />
+    <Compile Include="Motion\DialogMotion\AddMotionData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Motion\DialogMotion\AddMotionData.Designer.cs">
+      <DependentUpon>AddMotionData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Motion\DialogMotion\MotionControlAjin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Motion\DialogMotion\MotionControlAjin.Designer.cs">
+      <DependentUpon>MotionControlAjin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Motion\DialogMotion\MotionControlForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Motion\DialogMotion\MotionControlForm.Designer.cs">
+      <DependentUpon>MotionControlForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Motion\DialogMotion\MotionSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Motion\DialogMotion\MotionSetting.Designer.cs">
+      <DependentUpon>MotionSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Motion\DialogMotion\MotionSettingAjin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Motion\DialogMotion\MotionSettingAjin.Designer.cs">
+      <DependentUpon>MotionSettingAjin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Motion\IAxis.cs" />
+    <Compile Include="Motion\IMotion.cs" />
+    <Compile Include="Motion\MotionAjin.cs" />
+    <Compile Include="Motion\MotionBase.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SequenceManager.cs" />
+    <EmbeddedResource Include="AddSeqDelay.resx">
+      <DependentUpon>AddSeqDelay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddSequence.resx">
+      <DependentUpon>AddSequence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddSeqIO.resx">
+      <DependentUpon>AddSeqIO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddSeqMotion.resx">
+      <DependentUpon>AddSeqMotion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IO\DialogIO\IOControl.resx">
+      <DependentUpon>IOControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IO\DialogIO\IONameSetting.resx">
+      <DependentUpon>IONameSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Motion\DialogMotion\AddMotionData.resx">
+      <DependentUpon>AddMotionData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Motion\DialogMotion\MotionControlAjin.resx">
+      <DependentUpon>MotionControlAjin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Motion\DialogMotion\MotionControlForm.resx">
+      <DependentUpon>MotionControlForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Motion\DialogMotion\MotionSetting.resx">
+      <DependentUpon>MotionSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Motion\DialogMotion\MotionSettingAjin.resx">
+      <DependentUpon>MotionSettingAjin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DLL\Ajin\32Bit\AXL.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\Ajin\32Bit\EzBasicAxl.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\Ajin\64Bit\AXL.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\Ajin\64Bit\EzBasicAxl.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>IF NOT EXIST $(TargetDir)Config (mkdir $(TargetDir)Config)</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
