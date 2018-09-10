@@ -43,12 +43,12 @@
             this.button_start_seq_continuous = new System.Windows.Forms.Button();
             this.button_stop_seq = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_seq_del = new System.Windows.Forms.Button();
+            this.button_seq_save = new System.Windows.Forms.Button();
+            this.listView_seq_recipe = new System.Windows.Forms.ListView();
+            this.columnHeader_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_seq_name = new System.Windows.Forms.TextBox();
-            this.listView_seq_recipe = new System.Windows.Forms.ListView();
-            this.button_seq_save = new System.Windows.Forms.Button();
-            this.button_seq_del = new System.Windows.Forms.Button();
-            this.columnHeader_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -86,7 +86,7 @@
             this.listView_seq.FullRowSelect = true;
             this.listView_seq.Location = new System.Drawing.Point(12, 39);
             this.listView_seq.Name = "listView_seq";
-            this.listView_seq.Size = new System.Drawing.Size(328, 277);
+            this.listView_seq.Size = new System.Drawing.Size(328, 288);
             this.listView_seq.TabIndex = 1;
             this.listView_seq.UseCompatibleStateImageBehavior = false;
             this.listView_seq.View = System.Windows.Forms.View.Details;
@@ -133,16 +133,16 @@
             // 
             // textBox_seq_repeat
             // 
-            this.textBox_seq_repeat.Location = new System.Drawing.Point(72, 510);
+            this.textBox_seq_repeat.Location = new System.Drawing.Point(408, 166);
             this.textBox_seq_repeat.Name = "textBox_seq_repeat";
-            this.textBox_seq_repeat.Size = new System.Drawing.Size(100, 21);
+            this.textBox_seq_repeat.Size = new System.Drawing.Size(80, 21);
             this.textBox_seq_repeat.TabIndex = 5;
             this.textBox_seq_repeat.Text = "1";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 513);
+            this.label1.Location = new System.Drawing.Point(346, 169);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 12);
             this.label1.TabIndex = 6;
@@ -150,9 +150,9 @@
             // 
             // button_start_seq
             // 
-            this.button_start_seq.Location = new System.Drawing.Point(12, 537);
+            this.button_start_seq.Location = new System.Drawing.Point(348, 193);
             this.button_start_seq.Name = "button_start_seq";
-            this.button_start_seq.Size = new System.Drawing.Size(160, 42);
+            this.button_start_seq.Size = new System.Drawing.Size(140, 42);
             this.button_start_seq.TabIndex = 7;
             this.button_start_seq.Text = "Start sequence";
             this.button_start_seq.UseVisualStyleBackColor = true;
@@ -160,9 +160,9 @@
             // 
             // button_start_seq_continuous
             // 
-            this.button_start_seq_continuous.Location = new System.Drawing.Point(187, 537);
+            this.button_start_seq_continuous.Location = new System.Drawing.Point(348, 241);
             this.button_start_seq_continuous.Name = "button_start_seq_continuous";
-            this.button_start_seq_continuous.Size = new System.Drawing.Size(160, 42);
+            this.button_start_seq_continuous.Size = new System.Drawing.Size(140, 42);
             this.button_start_seq_continuous.TabIndex = 8;
             this.button_start_seq_continuous.Text = "Start continuous sequence";
             this.button_start_seq_continuous.UseVisualStyleBackColor = true;
@@ -170,12 +170,13 @@
             // 
             // button_stop_seq
             // 
-            this.button_stop_seq.Location = new System.Drawing.Point(12, 585);
+            this.button_stop_seq.BackColor = System.Drawing.Color.Red;
+            this.button_stop_seq.Location = new System.Drawing.Point(348, 289);
             this.button_stop_seq.Name = "button_stop_seq";
-            this.button_stop_seq.Size = new System.Drawing.Size(335, 42);
+            this.button_stop_seq.Size = new System.Drawing.Size(140, 42);
             this.button_stop_seq.TabIndex = 9;
             this.button_stop_seq.Text = "Stop sequence";
-            this.button_stop_seq.UseVisualStyleBackColor = true;
+            this.button_stop_seq.UseVisualStyleBackColor = false;
             this.button_stop_seq.Click += new System.EventHandler(this.button_stop_seq_Click);
             // 
             // groupBox1
@@ -185,12 +186,51 @@
             this.groupBox1.Controls.Add(this.listView_seq_recipe);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBox_seq_name);
-            this.groupBox1.Location = new System.Drawing.Point(12, 333);
+            this.groupBox1.Location = new System.Drawing.Point(12, 351);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(476, 158);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sequence";
+            // 
+            // button_seq_del
+            // 
+            this.button_seq_del.Location = new System.Drawing.Point(413, 23);
+            this.button_seq_del.Name = "button_seq_del";
+            this.button_seq_del.Size = new System.Drawing.Size(57, 23);
+            this.button_seq_del.TabIndex = 11;
+            this.button_seq_del.Text = "Del";
+            this.button_seq_del.UseVisualStyleBackColor = true;
+            // 
+            // button_seq_save
+            // 
+            this.button_seq_save.Location = new System.Drawing.Point(350, 23);
+            this.button_seq_save.Name = "button_seq_save";
+            this.button_seq_save.Size = new System.Drawing.Size(57, 23);
+            this.button_seq_save.TabIndex = 10;
+            this.button_seq_save.Text = "Save";
+            this.button_seq_save.UseVisualStyleBackColor = true;
+            this.button_seq_save.Click += new System.EventHandler(this.button_seq_save_Click);
+            // 
+            // listView_seq_recipe
+            // 
+            this.listView_seq_recipe.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader_name});
+            this.listView_seq_recipe.FullRowSelect = true;
+            this.listView_seq_recipe.GridLines = true;
+            this.listView_seq_recipe.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.listView_seq_recipe.Location = new System.Drawing.Point(8, 54);
+            this.listView_seq_recipe.Name = "listView_seq_recipe";
+            this.listView_seq_recipe.Size = new System.Drawing.Size(462, 98);
+            this.listView_seq_recipe.TabIndex = 9;
+            this.listView_seq_recipe.UseCompatibleStateImageBehavior = false;
+            this.listView_seq_recipe.View = System.Windows.Forms.View.Details;
+            this.listView_seq_recipe.SelectedIndexChanged += new System.EventHandler(this.listView_seq_recipe_SelectedIndexChanged);
+            // 
+            // columnHeader_name
+            // 
+            this.columnHeader_name.Text = "Name";
+            this.columnHeader_name.Width = 308;
             // 
             // label2
             // 
@@ -208,51 +248,12 @@
             this.textBox_seq_name.Size = new System.Drawing.Size(241, 21);
             this.textBox_seq_name.TabIndex = 7;
             // 
-            // listView_seq_recipe
-            // 
-            this.listView_seq_recipe.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader_name});
-            this.listView_seq_recipe.FullRowSelect = true;
-            this.listView_seq_recipe.GridLines = true;
-            this.listView_seq_recipe.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listView_seq_recipe.Location = new System.Drawing.Point(8, 54);
-            this.listView_seq_recipe.Name = "listView_seq_recipe";
-            this.listView_seq_recipe.Size = new System.Drawing.Size(462, 98);
-            this.listView_seq_recipe.TabIndex = 9;
-            this.listView_seq_recipe.UseCompatibleStateImageBehavior = false;
-            this.listView_seq_recipe.View = System.Windows.Forms.View.Details;
-            this.listView_seq_recipe.SelectedIndexChanged += new System.EventHandler(this.listView_seq_recipe_SelectedIndexChanged);
-            // 
-            // button_seq_save
-            // 
-            this.button_seq_save.Location = new System.Drawing.Point(350, 23);
-            this.button_seq_save.Name = "button_seq_save";
-            this.button_seq_save.Size = new System.Drawing.Size(57, 23);
-            this.button_seq_save.TabIndex = 10;
-            this.button_seq_save.Text = "Save";
-            this.button_seq_save.UseVisualStyleBackColor = true;
-            this.button_seq_save.Click += new System.EventHandler(this.button_seq_save_Click);
-            // 
-            // button_seq_del
-            // 
-            this.button_seq_del.Location = new System.Drawing.Point(413, 23);
-            this.button_seq_del.Name = "button_seq_del";
-            this.button_seq_del.Size = new System.Drawing.Size(57, 23);
-            this.button_seq_del.TabIndex = 11;
-            this.button_seq_del.Text = "Del";
-            this.button_seq_del.UseVisualStyleBackColor = true;
-            // 
-            // columnHeader_name
-            // 
-            this.columnHeader_name.Text = "Name";
-            this.columnHeader_name.Width = 308;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(500, 639);
+            this.ClientSize = new System.Drawing.Size(500, 523);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_stop_seq);
             this.Controls.Add(this.button_start_seq_continuous);

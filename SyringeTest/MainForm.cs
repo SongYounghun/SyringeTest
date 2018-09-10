@@ -23,6 +23,8 @@ namespace SyringeTest
         MotionControlForm m_motionCtrlAjin = null;
         IOControl m_ioCtrlAjin = null;
 
+        bool m_bIsSaved = true;
+
         SequenceManager m_seqMng = null;
 
         public MainForm()
@@ -34,7 +36,7 @@ namespace SyringeTest
 
         private void iOToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DIOBase.GetInstanceInterface() == null) 
+            if (DIOBase.GetInstanceInterface() == null)
             {
                 MessageBox.Show("IO가 존재하지 않습니다.");
                 return;
@@ -106,7 +108,8 @@ namespace SyringeTest
                     if (item != null)
                     {
                         listView_seq.Items.Add(item);
-                    }                    
+                        m_bIsSaved = false;
+                    }
                 }
             }
         }
@@ -122,10 +125,11 @@ namespace SyringeTest
                     {
                         ListViewItem lvItem = items[0];
                         int listInd = listView_seq.Items.IndexOf(lvItem);
-                        listView_seq.Items.Remove(lvItem);                        
+                        listView_seq.Items.Remove(lvItem);
                         m_seqMng.RemoveSeq(listInd);
+                        m_bIsSaved = false;
                     }
-                }                
+                }
             }
             catch (Exception E)
             {
@@ -140,6 +144,7 @@ namespace SyringeTest
             {
                 listView_seq.Items.Clear();
                 m_seqMng.ClearSeq();
+                m_bIsSaved = false;
             }
             catch (Exception E)
             {
@@ -155,7 +160,8 @@ namespace SyringeTest
                 if (m_seqMng != null)
                 {
                     m_seqMng.SequenceRepeat = Convert.ToInt32(textBox_seq_repeat.Text);
-                    m_seqMng.StartSequence();
+                    if (m_seqMng.SequenceRepeat > 0)
+                        m_seqMng.StartSequence();
                 }
             }
             catch (Exception E)
@@ -239,10 +245,12 @@ namespace SyringeTest
                 if (root != null && !root.IsEmpty)
                 {
                     IEnumerator<XElement> xSequences = root.Elements().GetEnumerator();
+                    m_seqMng.ClearSeq();
+                    listView_seq.Items.Clear();
                     while (xSequences.MoveNext())
                     {
+                        ListViewItem item = null;
                         XElement xSeq = xSequences.Current;
-
                         switch (xSeq.Name.LocalName)
                         {
                             case "Delay":
@@ -250,25 +258,43 @@ namespace SyringeTest
                                     if (xSeq.Element("delay_time") != null)
                                     {
                                         int nDelayTime = Convert.ToInt32(xSeq.Element("delay_time").Value);
+                                        m_seqMng.AddSeqDelay(nDelayTime);
 
+                                        item = new ListViewItem(SequenceManager.SEQUENCE.Delay.ToString());
+                                        item.SubItems.Add(nDelayTime.ToString() + " ms");
                                     }
                                 }
                                 break;
 
                             case "IO":
                                 {
-                                    if (xSeq.Element("delay_time") != null)
-                                    {
+                                    SequenceManager.SEQ_IO seqIo = new SequenceManager.SEQ_IO();
+                                    if (xSeq.Element("nIoNum") != null) { seqIo.nIoNum = Convert.ToInt32(xSeq.Element("nIoNum").Value); }
+                                    if (xSeq.Element("bOn") != null) { seqIo.bOn = Convert.ToBoolean(xSeq.Element("bOn").Value); }
+                                    m_seqMng.AddSeqIO(seqIo.nIoNum, seqIo.bOn);
 
-                                    }
+                                    item = new ListViewItem(SequenceManager.SEQUENCE.IO.ToString());
+                                    item.SubItems.Add(seqIo.nIoNum.ToString() + ", " + seqIo.bOn.ToString());
                                 }
                                 break;
 
                             case "Motion":
                                 {
+                                    SequenceManager.SEQ_MOTION seqMot = new SequenceManager.SEQ_MOTION();
+                                    if (xSeq.Element("nAxisNum") != null) { seqMot.nAxisNum = Convert.ToInt32(xSeq.Element("nAxisNum").Value); }
+                                    if (xSeq.Element("dPos") != null) { seqMot.dPos = Convert.ToDouble(xSeq.Element("dPos").Value); }
+                                    m_seqMng.AddSeqMotion(seqMot.nAxisNum, seqMot.dPos);
 
+                                    item = new ListViewItem(SequenceManager.SEQUENCE.Motion.ToString());
+                                    item.SubItems.Add(seqMot.nAxisNum.ToString() + ", " + seqMot.dPos.ToString("0.####"));
                                 }
                                 break;
+                        }
+
+                        if (item != null)
+                        {
+                            listView_seq.Items.Add(item);
+                            m_bIsSaved = true;
                         }
                     }
                 }
@@ -343,6 +369,7 @@ namespace SyringeTest
                 }
                 SaveSeqXml(Application.StartupPath + "\\SeqRecipe\\" + textBox_seq_name.Text);
                 listView_seq_recipe.Items.Add(textBox_seq_name.Text);
+                m_bIsSaved = true;
             }
         }
 
@@ -355,15 +382,27 @@ namespace SyringeTest
                     string path = listView_seq_recipe.SelectedItems[0].Text;
                     if (Directory.Exists(Application.StartupPath + "\\SeqRecipe"))
                     {
-                        if (MessageBox.Show("Do you want to load sequence?", "", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                        if (m_bIsSaved)
                         {
                             LoadSeqXml(Application.StartupPath + "\\SeqRecipe\\" + path, true);
                             textBox_seq_name.Text = path;
+                            return;
+                        }
+                        else
+                        {
+                            if (MessageBox.Show("Do you want to load sequence?", "", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                            {
+                                LoadSeqXml(Application.StartupPath + "\\SeqRecipe\\" + path, true);
+                                textBox_seq_name.Text = path;
+                                return;
+                            }
                         }
                         
                     }
                 }
             }
+
+            textBox_seq_name.Text = "";
         }
     }
 }
