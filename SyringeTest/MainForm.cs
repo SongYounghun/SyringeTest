@@ -368,7 +368,11 @@ namespace SyringeTest
                     Directory.CreateDirectory(Application.StartupPath + "\\SeqRecipe");
                 }
                 SaveSeqXml(Application.StartupPath + "\\SeqRecipe\\" + textBox_seq_name.Text);
-                listView_seq_recipe.Items.Add(textBox_seq_name.Text);
+                ListViewItem item = listView_seq_recipe.FindItemWithText(textBox_seq_name.Text);
+                if (item == null)
+                {
+                    listView_seq_recipe.Items.Add(textBox_seq_name.Text);
+                }                
                 m_bIsSaved = true;
             }
         }
@@ -403,6 +407,21 @@ namespace SyringeTest
             }
 
             textBox_seq_name.Text = "";
+        }
+
+        private void button_seq_del_Click(object sender, EventArgs e)
+        {
+            ListView.SelectedListViewItemCollection items = listView_seq_recipe.SelectedItems;
+            if (items.Count > 0)
+            {
+                ListViewItem lvItem = items[0];
+
+                File.Delete(Application.StartupPath + "\\SeqRecipe\\" + lvItem.Text);
+                
+                listView_seq_recipe.Items.Remove(lvItem);
+
+                
+            }
         }
     }
 }

@@ -201,6 +201,7 @@
             this.button_seq_del.TabIndex = 11;
             this.button_seq_del.Text = "Del";
             this.button_seq_del.UseVisualStyleBackColor = true;
+            this.button_seq_del.Click += new System.EventHandler(this.button_seq_del_Click);
             // 
             // button_seq_save
             // 
